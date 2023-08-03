@@ -1,0 +1,24 @@
+<%- include("header") -%>
+
+  <div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+  </div>
+
+  <div class="box">
+    <% newListItems.forEach(element => { %>
+      <form action="<%= listTitle === 'today' || listTitle  === 'Today' ? '/delete' : `/${listTitle}/delete` %>" method="post">
+        <div class="item">
+          <input type="checkbox" name="deleteitem" value="<%= element._id %>" onchange="this.form.submit()">
+          <p><%= element.task %></p>
+        </div>
+      </form>
+      
+      
+    <% }) %>
+      <form class="item" action="<%= listTitle === 'today' || listTitle  === 'Today' ? '/' : `/${listTitle}` %>" method="post">
+        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+        <button type="submit" name="list">+</button>
+      </form>
+  </div>
+
+<%- include("footer") -%>
